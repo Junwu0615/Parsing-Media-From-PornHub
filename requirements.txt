@@ -1,0 +1,3 @@
+tqdm==4.64.1
+requests==2.31.0
+argumentparser==1.2.1
