@@ -50,7 +50,7 @@ class ParsingMediaLogic:
 
     def log_record(self):
         file = self.path + '\\downloads_log.txt'
-        content = f'{str(ParsingMediaLogic.utc_to_now())[:19]} | {self.url}\n'
+        content = f'{str(ParsingMediaLogic.utc_to_now())[:19]} | python Entry.py -u {self.url}\n'
         if not os.path.exists(file):
             with open(file, 'w') as f:
                 f.write(content)
@@ -76,7 +76,7 @@ class ParsingMediaLogic:
 
     def m3u8_processing(self):
         res = self.session.get(self.url, headers=self.headers, timeout=self.timeout)
-        create_folder = len(os.listdir(self.path)) + 1
+        create_folder = len(os.listdir(self.path))
         self.path += f'\\Secret_{create_folder}'
         if not os.path.exists(self.path):
             ParsingMediaLogic.check_folder(self.path)
