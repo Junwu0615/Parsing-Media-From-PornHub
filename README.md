@@ -25,7 +25,7 @@ python Entry.py -h
 
 - `-h` Help : Show this help message and exit.
 - `-u` URL : Give a <mdeia.m3u8> of PornHub `default: ''`
-- `-p` Path : Give a save path | ex: './Media/' `default: Media`
+- `-p` Path : Give a save path | ex: './media/' `default: media`
 
 ## STEP.5　EXAMPLE
 
@@ -33,11 +33,11 @@ python Entry.py -h
 - 環境可能需要安裝 [FFmpeg](https://www.ffmpeg.org/download.html) 解包套件，請參考先前專案 [Parsing-Media-From-JVID](https://github.com/Junwu0615/Parsing-Media-From-JVID)
 - 在想要抓得影片頁面，開啟`開發人員工具 (F12)`，搜尋`m3u8`，如下圖所示。
 
-  - ![00.jpg](/Sample/00.jpg) 
+  - ![00.jpg](/sample/00.jpg) 
   
   - 該長串網址即為要輸入進命令列的目標指令
 
-  - ![00.gif](/Sample/00.gif) 
+  - ![00.gif](/sample/00.gif) 
   
 ### II　範例
 ```python
