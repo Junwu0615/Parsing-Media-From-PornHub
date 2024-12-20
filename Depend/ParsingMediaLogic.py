@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 """
 @author: PC
-Update Time: 2024-12-18
+Update Time: 2024-12-20
 """
 from tqdm import tqdm
+from dateutil import tz
+from datetime import datetime
 import os, requests, subprocess
 from subprocess import PIPE, STDOUT
 from concurrent.futures import ThreadPoolExecutor, wait
@@ -14,6 +16,7 @@ class ParsingMediaLogic:
         self.base_url = self.url.split('.mp4')[0] + '.mp4'
         self.path = os.getcwd() + '\\' + obj.path
 
+        self.log_record()
         self.todo_dict = {}
         self.headers = ParsingMediaLogic.update_headers()
         self.session = requests.Session()
@@ -40,6 +43,20 @@ class ParsingMediaLogic:
             print(f'Get Downloads List... {symbol * 41} 100%')
         elif task == 'Finish_Task':
             print('Finish Task ! Exit Program ...')
+
+    @staticmethod
+    def utc_to_now():
+        return datetime.fromtimestamp(datetime.utcnow().timestamp() + 28800).replace(tzinfo=tz.gettz('Asia/Taipei'))
+
+    def log_record(self):
+        file = self.path + '\\downloads_log.txt'
+        content = f'{str(ParsingMediaLogic.utc_to_now())[:19]} | {self.url}\n'
+        if not os.path.exists(file):
+            with open(file, 'w') as f:
+                f.write(content)
+        else:
+            new = [i for i in open(file, 'r')] + [content]
+            open(file, 'w').write(''.join(new))
 
     def remove_temp_file(self):
         for file in [i for i in os.listdir(self.path) if i.split('.')[-1] in ['ts', 'm3u8', 'txt']]:
